@@ -37,9 +37,6 @@ for sz in HIDDEN_SIZES:
     pv=sz
 layers.append(Layer(OUTSZ,pv))
 
-START=int(input(f"Start (<={N}): ") or 0)
-END=int(input(f"End (<={N}): ") or N)
-
 correct=0
 
 def train():
@@ -54,10 +51,10 @@ def train():
     correct+=maxi==ans
     return loss,maxi==ans,maxv
 
-for t in range(START,END):
+for t in range(N):
     try:
         loss,cor,maxv=train()
-        print(f"({t+1}/{N}) Correct:{'NY'[cor]} Confidence: {maxv:.2f} Accuracy: {100*correct/(t-START+1):.1f}%")
+        print(f"({t+1}/{N}) Correct:{'NY'[cor]} Accuracy: {100*correct/(t+1):.1f}%")
     except KeyboardInterrupt:
         print("Quit")
         break

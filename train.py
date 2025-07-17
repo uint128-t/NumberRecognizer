@@ -61,8 +61,6 @@ def save_weights():
         for bias in layer.biases:
             weights.write(struct.pack('d',bias))
 
-START=int(input(f"Start (<={N}): ") or 0)
-END=int(input(f"End (<={N}): ") or N)
 cr=deque()
 al=deque()
 
@@ -96,7 +94,7 @@ def train():
         al.popleft()
     return loss
 
-for t in range(START,END):
+for t in range(N):
     try:
         loss=train()
         print(end=f"\r({t+1}/{N}) Accuracy: {100*cr.count(True)//len(cr)}%, Avg Loss: {sum(al)/len(al):.4f} Loss: {loss:.4f}   ")
